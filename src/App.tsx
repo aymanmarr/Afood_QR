@@ -11,7 +11,6 @@ import {
   Send,
   CheckCircle
 } from 'lucide-react';
-import { supabase } from './lib/supabase';
 import logo from "./Assets/logo_afood_blam.png";
 
 const containerVariants = {
