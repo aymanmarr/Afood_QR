@@ -125,7 +125,7 @@ function App() {
             </motion.a>
 
             <motion.a
-              href="https://www.afood.store"
+              href="https://afood-seven.vercel.app/"
               className="flex items-center justify-center gap-3 w-full bg-stone-100 hover:bg-stone-200 text-emerald-900 font-medium py-4 px-6 rounded-xl transition-all border border-amber-200"
               variants={itemVariants}
               whileHover={{ scale: 1.02, y: -2 }}
