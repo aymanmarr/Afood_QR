@@ -45,17 +45,12 @@ function App() {
 
   const handleSubmitFeedback = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (rating === 0 || !message.trim()) return;
 
     setIsSubmitting(true);
 
-    const { error } = await supabase
-      .from('feedback')
-      .insert([{ rating, message: message.trim() }]);
-
-    setIsSubmitting(false);
-
-    if (!error) {
+    // Simulate API call
+    setTimeout(() => {
+      setIsSubmitting(false);
       setIsSuccess(true);
       setTimeout(() => {
         setShowComplaintForm(false);
@@ -63,7 +58,7 @@ function App() {
         setRating(0);
         setMessage('');
       }, 2000);
-    }
+    }, 1000);
   };
 
   return (
@@ -152,7 +147,7 @@ function App() {
               </div>
 
               <motion.a
-                href="https://maps.app.goo.gl/vHg3gXnSQ8gTyQRE9?g_st=ipc"
+                href="https://www.google.com/maps/place/A+Food/@33.5479916,-7.68306,808m/data=!3m1!1e3!4m8!3m7!1s0xda62d29a6ccc749:0x5d7e33477bc638df!8m2!3d33.5479916!4d-7.68306!9m1!1b1!16s%2Fg%2F11h4qm33pk!5m1!1e1!18m1!1e1?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative flex items-center justify-center gap-3 w-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-emerald-900 font-semibold py-4 px-6 rounded-xl shadow-xl transition-all group"
@@ -255,7 +250,7 @@ function App() {
 
                         <motion.button
                           type="submit"
-                          disabled={isSubmitting || rating === 0 || !message.trim()}
+                          disabled={isSubmitting}
                           className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-emerald-900 to-emerald-800 hover:from-emerald-950 hover:to-emerald-900 disabled:bg-stone-300 text-amber-100 font-semibold py-3 px-6 rounded-lg transition-all"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
