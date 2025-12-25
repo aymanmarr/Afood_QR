@@ -135,140 +135,142 @@ function App() {
             className="px-6 pb-6"
             variants={itemVariants}
           >
-            <div className="bg-gradient-to-br from-stone-50 via-amber-50 to-stone-100 rounded-2xl p-6 space-y-4 border-2 border-amber-200 shadow-lg relative overflow-hidden">
+            <div className="bg-gradient-to-br from-stone-50 via-amber-50 to-stone-100 rounded-2xl p-6 border-2 border-amber-200 shadow-lg relative overflow-hidden">
               <div className="absolute inset-0 bg-moroccan opacity-5" />
-              <div className="relative z-10">
-                <h2 className="text-xl font-display font-bold text-emerald-900 text-center mb-1">
-                  Votre avis compte
-                </h2>
-                <p className="text-center text-sm text-amber-700 font-light">
-                  Aidez-nous à servir mieux
-                </p>
-              </div>
-
-              <motion.a
-                href="https://www.google.com/maps/place/A+Food/@33.5479916,-7.68306,808m/data=!3m1!1e3!4m8!3m7!1s0xda62d29a6ccc749:0x5d7e33477bc638df!8m2!3d33.5479916!4d-7.68306!9m1!1b1!16s%2Fg%2F11h4qm33pk!5m1!1e1!18m1!1e1?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative flex items-center justify-center gap-3 w-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-emerald-900 font-semibold py-4 px-6 rounded-xl shadow-xl transition-all group"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 to-amber-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition" />
-                <div className="relative flex items-center justify-center gap-3">
-                  <Star size={24} fill="currentColor" />
-                  <span className="text-center leading-tight">
-                    Vous avez aimé ?<br />
-                    <span className="text-sm">Donnez-nous 5 étoiles sur Google !</span>
-                  </span>
+              <div className="relative z-10 space-y-4">
+                <div>
+                  <h2 className="text-xl font-display font-bold text-emerald-900 text-center mb-1">
+                    Votre avis compte
+                  </h2>
+                  <p className="text-center text-sm text-amber-700 font-light">
+                    Aidez-nous à servir mieux
+                  </p>
                 </div>
-              </motion.a>
 
-              <motion.button
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setShowComplaintForm(!showComplaintForm);
-                }}
-                className="flex items-center justify-center gap-3 w-full bg-white hover:bg-stone-50 text-emerald-900 font-medium py-4 px-6 rounded-xl border-2 border-amber-200 transition-all cursor-pointer active:bg-stone-100"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 1 }}
-              >
-                <MessageSquareWarning size={22} className="text-amber-600 flex-shrink-0" />
-                <span>Faire une réclamation</span>
-              </motion.button>
+                <motion.a
+                  href="https://maps.app.goo.gl/vHg3gXnSQ8gTyQRE9?g_st=ipc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative flex items-center justify-center gap-3 w-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-emerald-900 font-semibold py-4 px-6 rounded-xl shadow-xl transition-all group"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400 to-amber-500 rounded-xl blur opacity-30 group-hover:opacity-50 transition" />
+                  <div className="relative flex items-center justify-center gap-3">
+                    <Star size={24} fill="currentColor" />
+                    <span className="text-center leading-tight">
+                      Vous avez aimé ?<br />
+                      <span className="text-sm">Donnez-nous 5 étoiles sur Google !</span>
+                    </span>
+                  </div>
+                </motion.a>
 
-              <AnimatePresence>
-                {showComplaintForm && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="overflow-hidden"
-                  >
-                    {isSuccess ? (
-                      <motion.div
-                        className="bg-gradient-to-br from-emerald-50 to-emerald-100 border-2 border-emerald-300 rounded-xl p-6 text-center"
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                      >
-                        <CheckCircle size={48} className="text-emerald-700 mx-auto mb-3" />
-                        <p className="text-emerald-900 font-semibold text-lg font-display">
-                          Merci !
-                        </p>
-                        <p className="text-emerald-700 text-sm mt-1">
-                          Nous avons bien reçu votre message
-                        </p>
-                      </motion.div>
-                    ) : (
-                      <form onSubmit={handleSubmitFeedback} className="bg-white rounded-xl p-5 border-2 border-amber-200 space-y-4">
-                        <div>
-                          <label className="block text-sm font-elegant text-emerald-900 mb-3">
-                            Votre évaluation
-                          </label>
-                          <div className="flex justify-center gap-3">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                              <motion.button
-                                key={star}
-                                type="button"
-                                onClick={() => setRating(star)}
-                                onMouseEnter={() => setHoverRating(star)}
-                                onMouseLeave={() => setHoverRating(0)}
-                                whileHover={{ scale: 1.2 }}
-                                whileTap={{ scale: 0.9 }}
-                                className="focus:outline-none"
-                              >
-                                <Star
-                                  size={36}
-                                  className={
-                                    star <= (hoverRating || rating)
-                                      ? "text-amber-500 fill-amber-500 drop-shadow-lg"
-                                      : "text-stone-300"
-                                  }
-                                />
-                              </motion.button>
-                            ))}
-                          </div>
-                        </div>
+                <motion.button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowComplaintForm(!showComplaintForm);
+                  }}
+                  className="flex items-center justify-center gap-3 w-full bg-white hover:bg-stone-50 text-emerald-900 font-medium py-4 px-6 rounded-xl border-2 border-amber-200 transition-all cursor-pointer active:bg-stone-100"
+                  whileHover={{ scale: 1.02, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 1 }}
+                >
+                  <MessageSquareWarning size={22} className="text-amber-600 flex-shrink-0" />
+                  <span>Faire une réclamation</span>
+                </motion.button>
 
-                        <div>
-                          <label className="block text-sm font-elegant text-emerald-900 mb-2">
-                            Votre message
-                          </label>
-                          <textarea
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                            rows={4}
-                            className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:outline-none focus:border-emerald-700 transition-colors resize-none bg-stone-50"
-                            placeholder="Partagez votre expérience avec nous..."
-                            required
-                          />
-                        </div>
-
-                        <motion.button
-                          type="submit"
-                          disabled={isSubmitting}
-                          className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-emerald-900 to-emerald-800 hover:from-emerald-950 hover:to-emerald-900 disabled:bg-stone-300 text-amber-100 font-semibold py-3 px-6 rounded-lg transition-all"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                <AnimatePresence>
+                  {showComplaintForm && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      {isSuccess ? (
+                        <motion.div
+                          className="bg-gradient-to-br from-emerald-50 to-emerald-100 border-2 border-emerald-300 rounded-xl p-6 text-center"
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
                         >
-                          {isSubmitting ? (
-                            <div className="w-5 h-5 border-2 border-amber-300 border-t-transparent rounded-full animate-spin" />
-                          ) : (
-                            <>
-                              <Send size={20} />
-                              <span>Envoyer</span>
-                            </>
-                          )}
-                        </motion.button>
-                      </form>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                          <CheckCircle size={48} className="text-emerald-700 mx-auto mb-3" />
+                          <p className="text-emerald-900 font-semibold text-lg font-display">
+                            Merci !
+                          </p>
+                          <p className="text-emerald-700 text-sm mt-1">
+                            Nous avons bien reçu votre message
+                          </p>
+                        </motion.div>
+                      ) : (
+                        <form onSubmit={handleSubmitFeedback} className="bg-white rounded-xl p-5 border-2 border-amber-200 space-y-4">
+                          <div>
+                            <label className="block text-sm font-elegant text-emerald-900 mb-3">
+                              Votre évaluation
+                            </label>
+                            <div className="flex justify-center gap-3">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <motion.button
+                                  key={star}
+                                  type="button"
+                                  onClick={() => setRating(star)}
+                                  onMouseEnter={() => setHoverRating(star)}
+                                  onMouseLeave={() => setHoverRating(0)}
+                                  whileHover={{ scale: 1.2 }}
+                                  whileTap={{ scale: 0.9 }}
+                                  className="focus:outline-none"
+                                >
+                                  <Star
+                                    size={36}
+                                    className={
+                                      star <= (hoverRating || rating)
+                                        ? "text-amber-500 fill-amber-500 drop-shadow-lg"
+                                        : "text-stone-300"
+                                    }
+                                  />
+                                </motion.button>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div>
+                            <label className="block text-sm font-elegant text-emerald-900 mb-2">
+                              Votre message
+                            </label>
+                            <textarea
+                              value={message}
+                              onChange={(e) => setMessage(e.target.value)}
+                              rows={4}
+                              className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:outline-none focus:border-emerald-700 transition-colors resize-none bg-stone-50"
+                              placeholder="Partagez votre expérience avec nous..."
+                              required
+                            />
+                          </div>
+
+                          <motion.button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-emerald-900 to-emerald-800 hover:from-emerald-950 hover:to-emerald-900 disabled:bg-stone-300 text-amber-100 font-semibold py-3 px-6 rounded-lg transition-all"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            {isSubmitting ? (
+                              <div className="w-5 h-5 border-2 border-amber-300 border-t-transparent rounded-full animate-spin" />
+                            ) : (
+                              <>
+                                <Send size={20} />
+                                <span>Envoyer</span>
+                              </>
+                            )}
+                          </motion.button>
+                        </form>
+                      )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
           </motion.div>
 
